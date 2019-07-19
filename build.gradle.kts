@@ -141,7 +141,11 @@ tasks {
             archiveFileName.set(project.properties["archiveName"] as String)
         }
     }
-
+    processResources{
+        filesMatching("application.yml"){
+            expand(mutableMapOf("version" to appVer))
+        }
+    }
     docker {
         val build = build.get()
         val bootJar = bootJar.get()
